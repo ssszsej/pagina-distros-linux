@@ -1,0 +1,220 @@
+/* ==========================================
+   VARIABLES CSS GLOBALES
+   ========================================== */
+:root {
+    /* Colores principales */
+    --primary-color: #5D5CDE;
+    --bg-light: #ffffff;
+    --bg-dark: #181818;
+    
+    /* Colores neón */
+    --neon-blue: #3b82f6;
+    --neon-purple: #8b5cf6;
+    --neon-green: #10b981;
+    --neon-red: #ef4444;
+    --neon-orange: #f97316;
+    --neon-cyan: #06b6d4;
+    --neon-pink: #ec4899;
+    
+    /* Espaciado */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 3rem;
+    
+    /* Bordes */
+    --border-radius: 0.5rem;
+    --border-radius-lg: 1rem;
+    
+    /* Sombras */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+    
+    /* Transiciones */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ==========================================
+   CONFIGURACIÓN BASE
+   ========================================== */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(-45deg, #0a0a0a, #1a1a2e, #16213e, #0f0f23);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    font-family: 'Exo 2', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   TIPOGRAFÍA
+   ========================================== */
+.font-orbitron {
+    font-family: 'Orbitron', monospace;
+}
+
+.font-exo {
+    font-family: 'Exo 2', sans-serif;
+}
+
+/* ==========================================
+   EFECTOS PRINCIPALES
+   ========================================== */
+
+/* Fondo animado */
+@keyframes gradient {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Efecto de cristal */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Efectos cyber */
+.cyber-border {
+    position: relative;
+    background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    transition: all var(--transition-normal);
+}
+
+.cyber-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-red), var(--neon-green));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.cyber-border:hover::before {
+    opacity: 0.7;
+}
+
+.cyber-border:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+}
+
+/* Efectos de texto neón */
+.neon-text {
+    text-shadow: 0 0 10px currentColor;
+}
+
+/* ==========================================
+   MODO OSCURO
+   ========================================== */
+.dark .glass-effect {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .cyber-border {
+    background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+/* ==========================================
+   SCROLLBAR PERSONALIZADA
+   ========================================== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #2563eb, #7c3aed);
+}
+
+/* ==========================================
+   UTILIDADES RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+    :root {
+        --spacing-xl: 2rem;
+    }
+    
+    .cyber-border {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .neon-text {
+        text-shadow: 0 0 1px currentColor;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .glass-effect {
+        backdrop-filter: blur(5px);
+    }
+}
+
+/* ==========================================
+   ESTADOS DE FOCUS Y ACCESIBILIDAD
+   ========================================== */
+*:focus {
+    outline: 2px solid var(--neon-blue);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================
+   EFECTOS DE PERFORMANCE
+   ========================================== */
+.gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.optimize-animations {
+    backface-visibility: hidden;
+    perspective: 1000px;
+}

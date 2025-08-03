@@ -1,0 +1,240 @@
+/* ==========================================
+   COMPONENTES ESPECÍFICOS
+   ========================================== */
+
+/* ==========================================
+   SECCIONES DE DISTROS
+   ========================================== */
+.distro-section {
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-title {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.section-description {
+    color: #d1d5db;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    margin-top: var(--spacing-md);
+}
+
+/* ==========================================
+   ICONOS DE SECCIÓN
+   ========================================== */
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    margin-right: var(--spacing-md);
+    filter: drop-shadow(0 0 10px currentColor);
+}
+
+.icon-container svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+/* ==========================================
+   GRIDS DE DISTRIBUCIONES
+   ========================================== */
+.distro-grid {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+    .distro-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .distro-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+/* ==========================================
+   TARJETAS DE DISTRIBUCIONES
+   ========================================== */
+.distro-card {
+    background: rgba(31, 41, 55, 0.5);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.distro-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left var(--transition-slow);
+}
+
+.distro-card:hover::before {
+    left: 100%;
+}
+
+.distro-card:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: currentColor;
+}
+
+.distro-card h3 {
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================
+   TARJETAS NVIDIA ESPECIALES
+   ========================================== */
+.nvidia-card {
+    position: relative;
+}
+
+.nvidia-badge {
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================
+   TARJETAS PROHIBIDAS
+   ========================================== */
+.forbidden-card {
+    background: rgba(127, 29, 29, 0.2);
+    border-color: rgba(239, 68, 68, 0.3);
+    position: relative;
+}
+
+.forbidden-card::after {
+    content: '⚠️';
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+.warning-box {
+    background: rgba(127, 29, 29, 0.3);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.warning-box h4 {
+    color: #fca5a5;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.warning-box p {
+    color: #fecaca;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.app-footer {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 1px solid #374151;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.app-footer p {
+    color: #9ca3af;
+    margin-bottom: var(--spacing-md);
+}
+
+.app-footer .flex {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.app-footer span {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* ==========================================
+   RESPONSIVE PARA COMPONENTES
+   ========================================== */
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .section-header .icon-container {
+        margin-right: 0;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .distro-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .app-footer .flex {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .distro-card {
+        padding: var(--spacing-sm);
+    }
+    
+    .distro-card h3 {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .warning-box {
+        padding: var(--spacing-sm);
+    }
+}
